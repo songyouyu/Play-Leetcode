@@ -10,7 +10,7 @@ public class Solution {
      *
      * 对于本题而言，当 needle 是空字符串时我们应当返回 0 。
      *
-     * hello          ll
+     * hello   ll
      * @param haystack
      * @param needle
      * @return

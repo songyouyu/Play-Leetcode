@@ -15,7 +15,7 @@ public class Solution {
      * @return
      */
     public boolean containsNearbyDuplicate(int[] nums, int k) {
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>(16);
         boolean flag = false;
 
         for (int i = 0; i < nums.length; i ++) {
