@@ -54,7 +54,7 @@ public class Solution {
             if (dummyNode.next.val == delNodeVal && i == list.size() - n) {
                 ListNode delNode = dummyNode.next;
                 dummyNode.next = delNode.next;
-                delNode = null;
+                delNode.next = null;
             } else {
                 dummyNode = dummyNode.next;
             }

@@ -25,7 +25,7 @@ public class Solution {
     public ListNode removeElements(ListNode head, int val) {
 
         // 使用虚拟头结点
-        ListNode dummyNode = new ListNode( 0);
+        ListNode dummyNode = new ListNode(0);
 
         dummyNode.next = head;
         ListNode curNode = dummyNode;
@@ -41,6 +41,5 @@ public class Solution {
 
         return dummyNode.next;
     }
-
 
 }
