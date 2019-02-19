@@ -37,14 +37,14 @@ public class Solution {
 
         return i + 1;
 
-//        int i = 0;
-//        for (int num : nums) {
-//            if (i < 2 || num > nums[i - 2]) {
-//                nums[i] = num;
-//                i ++;
+//        int k = 0;
+//        for (int i = 0; i < nums.length; i ++) {
+//            if (k < 2 || nums[i] != nums[k - 2]) {
+//                nums[k] = nums[i];
+//                k ++;
 //            }
 //        }
-//        return i;
+//        return k;
     }
 
     public static void main(String[] args) {
