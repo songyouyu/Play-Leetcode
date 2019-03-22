@@ -1,5 +1,3 @@
-import javax.swing.plaf.basic.BasicScrollPaneUI;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
