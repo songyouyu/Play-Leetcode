@@ -24,10 +24,30 @@ public class Solution {
      * @return
      */
     public ListNode reverseBetween(ListNode head, int m, int n) {
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+        ListNode startNode = dummyNode;
 
+        n -= m;
+        m --;
 
+        while (m != 0) {
+            startNode = startNode.next;
+            m --;
+        }
 
-        return null;
+        ListNode curNode = startNode.next;
+
+        while (n != 0) {
+            ListNode tempNode = startNode.next;
+            startNode.next = curNode.next;
+            curNode.next = curNode.next.next;
+            startNode.next.next = tempNode;
+
+            n --;
+        }
+
+        return dummyNode.next;
     }
 
 }
