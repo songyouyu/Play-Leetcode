@@ -4,7 +4,7 @@
  */
 public class Solution {
 
-    public static class ListNode {
+    public class ListNode {
         int val;
         ListNode next;
 
@@ -55,19 +55,6 @@ public class Solution {
         }
 
         return result.next;
-    }
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        ListNode listNode1 = new ListNode(1);
-        listNode1.next = new ListNode(8);
-        //listNode1.next.next = new ListNode(3);
-
-        ListNode listNode2 = new ListNode(0);
-        //listNode2.next = new ListNode(6);
-        //listNode2.next.next = new ListNode(4);
-
-        ListNode listNode = solution.addTwoNumbers(listNode1, listNode2);
     }
 
 }
