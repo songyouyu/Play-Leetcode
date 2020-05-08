@@ -1,3 +1,4 @@
+import javax.xml.stream.FactoryConfigurationError;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,32 +25,56 @@ public class Solution {
      * @return
      */
     public ListNode middleNode(ListNode head) {
-        ListNode node = head;
-        List<Integer> list = new ArrayList<>();
-        int num;
-        int i = 0;
+        //ListNode node = head;
+        //List<Integer> list = new ArrayList<>();
+        //int num;
+        //int i = 0;
+        //
+        //while (head != null) {
+        //    num = head.val;
+        //    list.add(i, num);
+        //    i ++;
+        //
+        //    head = head.next;
+        //}
+        //
+        //int a = list.size() / 2;
+        //int result = list.get(a);
+        //
+        //int j = 0;
+        //while (node != null) {
+        //    if (node.val == result && j == a) {
+        //        return node;
+        //    }
+        //    j ++;
+        //    node = node.next;
+        //}
+        //
+        //return null;
 
-        while (head != null) {
-            num = head.val;
-            list.add(i, num);
-            i ++;
-
-            head = head.next;
+        // 使用双指针
+        if (head.next == null) {
+            return head;
+        }
+        if (head.next.next == null) {
+            return head.next;
         }
 
-        int a = list.size() / 2;
-        int result = list.get(a);
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+        ListNode slow = dummyNode;
+        ListNode fast = dummyNode;
 
-        int j = 0;
-        while (node != null) {
-            if (node.val == result && j == a) {
-                return node;
+        while (fast != null) {
+            if ((fast.next == null) || (fast.next != null && fast.next.next == null)) {
+                slow = slow.next;
+                break;
             }
-            j ++;
-            node = node.next;
+            fast = fast.next.next;
+            slow = slow.next;
         }
 
-        return null;
+        return slow;
     }
 
 }
