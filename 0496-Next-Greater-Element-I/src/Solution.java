@@ -28,7 +28,7 @@ public class Solution {
      * @return
      */
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result = new ArrayList<>(nums1.length);
         int nums2Len = nums2.length;
 
         for (int i = 0; i < nums1.length; i ++) {
@@ -56,7 +56,7 @@ public class Solution {
             }
         }
 
-        int[] res = new int[result.size()];
+        int[] res = new int[nums1.length];
         for (int k = 0; k < res.length; k ++) {
             res[k] = result.get(k);
         }
