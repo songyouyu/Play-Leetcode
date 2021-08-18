@@ -13,29 +13,40 @@ public class Solution {
      * @return
      */
     public int[] twoSum(int[] nums, int target) {
-        int i = 0;
-        int j = 1;
-        int n = nums.length;
-        int[] result = new int[2];
+        //int i = 0;
+        //int j = 1;
+        //int n = nums.length;
+        //int[] result = new int[2];
+        //
+        //while (i < n) {
+        //    for (; j < n; j ++) {
+        //        if (nums[j] == target - nums[i]) {
+        //            result[0] = i;
+        //            result[1] = j;
+        //            break;
+        //        }
+        //    }
+        //
+        //    if (result[0] != 0) {
+        //        break;
+        //    }
+        //
+        //    i ++;
+        //    j = i + 1;
+        //}
+        //
+        //return result;
 
-        while (i < n) {
-            for (; j < n; j ++) {
-                if (nums[j] == target - nums[i]) {
-                    result[0] = i;
-                    result[1] = j;
-                    break;
+        for (int i = 0; i < nums.length; i ++) {
+            int tmp = target - nums[i];
+            for (int j = i + 1; j < nums.length; j ++) {
+                if (tmp == nums[j]) {
+                    return new int[]{i, j};
                 }
             }
-
-            if (result[0] != 0) {
-                break;
-            }
-
-            i ++;
-            j = i + 1;
         }
 
-        return result;
+        throw new IllegalArgumentException();
     }
 
     public static void main(String[] args) {
