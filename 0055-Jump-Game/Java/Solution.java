@@ -47,4 +47,26 @@ public class Solution {
         return maxReach >= len - 1;
     }
 
+    public boolean canJump1(int[] nums) {
+        int len = nums.length;
+        if (len == 1) {
+            return true;
+        }
+
+        int maxReach = 0;
+        for (int i = 0; i < len; i ++) {
+            if (i > maxReach) {
+                return false;
+            }
+            if (i + nums[i] > maxReach) {
+                maxReach = i + nums[i];
+            }
+            if (maxReach >= len - 1) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
