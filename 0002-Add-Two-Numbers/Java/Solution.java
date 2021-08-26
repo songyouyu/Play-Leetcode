@@ -33,7 +33,7 @@ public class Solution {
         ListNode result = new ListNode(0);
         ListNode tmp = result;
         int num = 0;
-
+        
         while (l1 != null || l2 != null) {
             int cur = num;
             if (l1 != null) {
