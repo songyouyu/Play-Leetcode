@@ -33,7 +33,7 @@ public class Solution {
         ListNode result = new ListNode(0);
         ListNode tmp = result;
         int num = 0;
-        
+
         while (l1 != null || l2 != null) {
             int cur = num;
             if (l1 != null) {
@@ -52,6 +52,32 @@ public class Solution {
 
         if (num != 0) {
             tmp.next = new ListNode(num);
+        }
+
+        return result.next;
+    }
+
+    public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
+        ListNode dummyNode = new ListNode(-1);
+        ListNode result = dummyNode;
+        int num = 0;
+
+        while (l1 != null || l2 != null) {
+            if (l1 != null) {
+                num += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                num += l2.val;
+                l2 = l2.next;
+            }
+            dummyNode.next = new ListNode(num % 10);
+            dummyNode = dummyNode.next;
+            num = num / 10;
+        }
+
+        if (num != 0) {
+            dummyNode.next = new ListNode(num);
         }
 
         return result.next;

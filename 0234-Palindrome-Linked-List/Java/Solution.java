@@ -76,6 +76,50 @@ public class Solution {
 		return prev;
 	}
 
+	public boolean isPalindrome1(ListNode head) {
+        if (head.next == null) {
+            return true;
+        }
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+        ListNode slow = dummyNode;
+        ListNode fast = dummyNode;
+
+        ListNode middle = null;
+        while (fast != null) {
+            if (fast.next == null) {
+                middle = slow.next;
+                break;
+            }
+            if (fast.next.next == null) {
+                middle = slow.next.next;
+                break;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // 反转 head -> slow
+        ListNode prev = null;
+        ListNode cur = head;
+        while (cur != slow) {
+            ListNode next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        cur.next = prev;
+
+        while (middle != null) {
+            if (middle.val != cur.val) {
+                return false;
+            }
+            middle = middle.next;
+            cur = cur.next;
+        }
+
+        return true;
+    }
+
 	public static void main(String[] args) {
 		ListNode head = new ListNode(1);
 		head.next = new ListNode(1);

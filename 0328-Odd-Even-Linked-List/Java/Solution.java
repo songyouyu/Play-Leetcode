@@ -53,4 +53,32 @@ public class Solution {
         return result1;
     }
 
+    public ListNode oddEvenList1(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode l = head;
+        ListNode r = head.next;
+        ListNode r1 = r;
+
+        while (l.next != null && r.next != null) {
+            l.next = r.next;
+            l = l.next;
+
+            if (l.next != null) {
+                r.next = l.next;
+                r = r.next;
+            }
+        }
+
+        if (r.next != null) {
+            r.next = null;
+        }
+
+        l.next = r1;
+        return dummy.next;
+    }
+
 }
