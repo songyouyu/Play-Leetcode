@@ -1,3 +1,5 @@
+import javax.net.ssl.CertPathTrustManagerParameters;
+
 /**
  * @author youyu.song
  * @date 2019/7/3 10:35
@@ -64,6 +66,53 @@ public class Solution {
 
 		return dummyNode.next;
 	}
+
+
+	public ListNode reverseKGroup2(ListNode head, int k) {
+		ListNode dummy = new ListNode(-1);
+		ListNode tail = dummy;
+
+		ListNode p = head;
+		while (p != null) {
+			int count = 0;
+			ListNode q = p;
+			while (q != null) {
+				count ++;
+				if (count == k) {
+					break;
+				}
+				q = q.next;
+			}
+
+			if (q == null) {
+				tail.next = p;
+				return dummy.next;
+			}
+			ListNode tmp = q.next;
+			ListNode[] reverseList = reverse(p, q);
+			tail.next = reverseList[0];
+			tail = reverseList[1];
+			p = tmp;
+		}
+
+		return dummy.next;
+	}
+
+	private ListNode[] reverse(ListNode head, ListNode tail) {
+		ListNode newHead = null;
+		ListNode p = head;
+		while (p != tail) {
+			ListNode tmp = p.next;
+			p.next = newHead;
+			newHead = p;
+			p = tmp;
+		}
+		p.next = newHead;
+
+		return new ListNode[]{tail, head};
+	}
+
+
 
 }
 
