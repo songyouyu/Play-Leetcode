@@ -1,6 +1,6 @@
 /**
- * @author youyusong
- * @date 2018/12/13
+ * @author songyouyu
+ * @date 2022/12/15
  */
 public class Solution {
 
@@ -14,14 +14,14 @@ public class Solution {
     }
 
     /**
-     * 反转一个单链表。
+     * 定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
+     *
+     * 链接：https://leetcode.cn/problems/fan-zhuan-lian-biao-lcof/
+     *
      * @param head
      * @return
      */
     public ListNode reverseList(ListNode head) {
-
-        // 1->2->3->4->5->NULL
-        // 5->4->3->2->1->NULL
         ListNode prev = null;
         ListNode cur = head;
 
@@ -34,6 +34,7 @@ public class Solution {
 
         return prev;
     }
+
 
     public ListNode reverseList1(ListNode head) {
         if (head == null) {
