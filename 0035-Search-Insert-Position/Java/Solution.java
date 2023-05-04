@@ -37,10 +37,32 @@ public class Solution {
         }
     }
 
+    public int searchInsert2(int[] nums, int target) {
+        int len = nums.length;
+        int l = 0;
+        int r = len - 1;
+
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                if ((mid + 1 < len && nums[mid + 1] > target) || (mid + 1 >= len && nums[len - 1] < target)) {
+                    return mid + 1;
+                }
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+
+        return 0;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] nums = {1, 3, 5, 6};
-        int n = solution.searchInsert(nums, 7);
+        int n = solution.searchInsert2(nums, -1);
         System.out.println(n);
     }
 
