@@ -29,14 +29,12 @@ public class Solution {
         while (l <= r) {
             int mid = l + (r - l) / 2;
             if (nums[mid] == target) {
-                lIndex = mid;
                 while (mid - 1 >= 0 && nums[mid - 1] == target) {
                     mid = mid - 1;
                 }
                 lIndex = mid;
 
                 mid = l + (r - l) / 2;
-                rIndex = mid;
                 while (mid + 1 < len && nums[mid + 1] == target) {
                     mid = mid + 1;
                 }
