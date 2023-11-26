@@ -9,7 +9,7 @@ public class Solution {
     public boolean isPerfectSquare(int num) {
         if (num == 1) {
             return true;
-        }
+        } 
         int l = 0;
         int r = num;
         while (l <= r) {

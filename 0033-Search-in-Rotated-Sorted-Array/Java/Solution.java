@@ -113,6 +113,35 @@ public class Solution {
         search(nums, mid + 1, r, target);
     }
 
+    public int search2(int[] nums, int target) {
+        int len = nums.length;
+        int l = 0;
+        int r = len - 1;
+
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[l] <= nums[mid]) {
+                // 数组左边有序
+                if (target >= nums[l] && target < nums[mid]) {
+                    r = mid - 1;
+                } else {
+                    l = mid + 1;
+                }
+            } else {
+                // 数组右边存在有序连续数据
+                if (target > nums[mid] && target <= nums[r]) {
+                    l = mid + 1;
+                } else {
+                    r = mid - 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+
     public static void main(String[] args) {
         int[] nums = {3, 1};
         int target = 1;

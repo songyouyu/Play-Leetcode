@@ -31,7 +31,7 @@ public class Solution {
             if (nums[mid] == target) {
                 while (mid - 1 >= 0 && nums[mid - 1] == target) {
                     mid = mid - 1;
-                }
+                } 
                 lIndex = mid;
 
                 mid = l + (r - l) / 2;

@@ -59,10 +59,32 @@ public class Solution {
         return 0;
     }
 
+    public int searchInsert3(int[] nums, int target) {
+        int len = nums.length;
+        int l = 0; 
+        int r = len - 1;
+
+        // 查找第一个大于等于 target 的位置
+        while (l <= r) {
+            int mid = (l + r) / 2;
+            if (nums[mid] >= target) {
+                if (mid == 0 || nums[mid - 1] < target) {
+                    return mid;
+                } else {
+                    r = mid - 1;
+                }
+            } else {
+                l = mid + 1;
+            }
+        }
+
+        return len;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] nums = {1, 3, 5, 6};
-        int n = solution.searchInsert2(nums, -1);
+        int n = solution.searchInsert3(nums, 7);
         System.out.println(n);
     }
 
