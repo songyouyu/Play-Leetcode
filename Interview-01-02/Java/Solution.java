@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Solution {
     
     public boolean CheckPermutation(String s1, String s2) {
