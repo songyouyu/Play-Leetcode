@@ -1,28 +1,52 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 public class Solution {
     
     /**
-     * https://leetcode.cn/problems/ping-heng-er-cha-shu-lcof/
+     * https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/
      * 
      * @param root
      * @return
      */
-    public boolean isBalanced(TreeNode root) {
+    public List<List<Integer>> decorateRecord(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
-            return true;
+            return result;
         }
-        int lDepth = getDepth(root.left);
-        int rDepth = getDepth(root.right);
-        return Math.abs(lDepth - rDepth) <= 1 && isBalanced(root.left) && isBalanced(root.right);
-    }
-
-    private int getDepth(TreeNode node) {
-        if (node == null) {
-            return 0;
+        Stack<TreeNode>[] stacks = new Stack[2];
+        for (int i = 0; i < 2; i ++) {
+            stacks[i] = new Stack<>();
         }
-        int lDepth = getDepth(node.left);
-        int rDepth = getDepth(node.right);
+        stacks[0].push(root);
+        int j = 0;
+        while (!stacks[j].isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            while (!stacks[j].isEmpty()) {
+                TreeNode node = stacks[j].pop();
+                list.add(node.val);
+                if (j == 0) {
+                    if (node.left != null) {
+                        stacks[1].push(node.left);
+                    }
+                    if (node.right != null) {
+                        stacks[1].push(node.right);
+                    }
+                } else {
+                    if (node.right != null) {
+                        stacks[0].push(node.right);
+                    }
+                    if (node.left != null) {
+                        stacks[0].push(node.left);
+                    }
+                }
+            }
+            result.add(list);
+            j = (j + 1) % 2;
+        }
 
-        return Math.max(lDepth, rDepth) + 1;
+        return result;
     }
 
 }

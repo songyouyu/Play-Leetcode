@@ -19,6 +19,8 @@ public class Solution {
 		}
 	}
 
+	List<List<Integer>> result = new ArrayList<>();
+
 	/**
 	 * 给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
 	 *
@@ -47,10 +49,8 @@ public class Solution {
 			return new ArrayList<>();
 		}
 
-		List<List<Integer>> result = new ArrayList<>();
 		Queue<TreeNode> queue = new LinkedList<>();
 		queue.add(root);
-
 		while (! queue.isEmpty()) {
 			List<Integer> list = new ArrayList<>();
 			int size = queue.size();
@@ -69,4 +69,114 @@ public class Solution {
 
 		return result;
 	}
+
+	public class TreeNodeWithLevel {
+        public TreeNode node;
+        public int level;
+
+        public TreeNodeWithLevel(TreeNode node, int level) {
+            this.node = node;
+            this.level = level;
+        }
+    }
+
+    public List<List<Integer>> levelOrder1(TreeNode root) {
+        if (root == null) {
+            return result;
+        }
+        Queue<TreeNodeWithLevel> queue = new LinkedList<>();
+        queue.add(new TreeNodeWithLevel(root, 0));
+        while (!queue.isEmpty()) {
+            TreeNodeWithLevel node = queue.poll();
+            if (node.level > result.size() - 1) {
+                result.add(new ArrayList<>());
+            }
+            result.get(node.level).add(node.node.val);
+            if (node.node.left != null) {
+                queue.add(new TreeNodeWithLevel(node.node.left, node.level + 1));
+            }
+            if (node.node.right != null) {
+                queue.add(new TreeNodeWithLevel(node.node.right, node.level + 1));
+            }
+        }
+
+        return result;
+    }
+
+
+    public List<List<Integer>> levelOrder2(TreeNode root) {
+        if (root == null) {
+            return result;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null);
+        while (!queue.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            while (!queue.isEmpty()) {
+                TreeNode node = queue.poll();
+                if (node == null) {
+                    break;
+                }
+                list.add(node.val);
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+            if (!list.isEmpty()) {
+                result.add(list);
+                queue.add(null);
+            }
+        }
+
+        return result;
+    }
+
+
+    public List<List<Integer>> levelOrder3(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i ++) {
+                TreeNode node = queue.poll();
+                list.add(node.val);
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+            result.add(list);
+        }
+
+        return result;
+    }
+	
+
+    public List<List<Integer>> levelOrder4(TreeNode root) {
+        dfs(root, 0);
+        return result;
+    }
+
+    private void dfs(TreeNode root, int level) {
+        if (root == null) {
+            return;
+        }
+        if (level > result.size() - 1) {
+            result.add(new ArrayList<>());
+        }
+        result.get(level).add(root.val);
+        dfs(root.left, level + 1);
+        dfs(root.right, level + 1);
+    }
+
 }
