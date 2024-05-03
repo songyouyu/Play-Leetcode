@@ -65,6 +65,46 @@ public class Solution {
         return l && r;
     }
 
+
+    private boolean isValid = true;
+
+    public boolean isValidBST1(TreeNode root) {
+        if (root == null) return false;
+        dfs(root);
+        return isValid;
+    }
+
+    /**
+     * 对于左子树而言，某个节点的最小值如果大于该节点的值，那么就不是二叉搜索数。
+     * 对于右子树而言，某个节点的最大值如果小于该节点的值，那么就不是二叉搜索数。
+     * @param root
+     */
+    private int[] dfs(TreeNode root) {
+        int min = root.val;
+        int max = root.val;
+        if (root.left != null) {
+            int[] leftSubtreeRange = dfs(root.left);
+            if (!isValid) return null;
+            // 左节点比较大的值，如果大于当前节点，那么就不是
+            if (leftSubtreeRange[1] >= root.val) {
+                isValid = false;
+                return null;
+            }
+            min = leftSubtreeRange[0];
+        }
+        if (root.right != null) {
+            // 右节点比较小的值，如果小于当前节点，那么就不是
+            int[] rightSubtreeRange = dfs(root.right);
+            if (!isValid) return null;
+            if (rightSubtreeRange[0] <= root.val) {
+                isValid = false;
+                return null;
+            }
+            max = rightSubtreeRange[1];
+        }
+        return new int[]{min, max};
+    }
+
     public static void main(String[] args) {
         TreeNode node = new TreeNode(5);
         node.left = new TreeNode(4);

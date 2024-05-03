@@ -65,4 +65,18 @@ public class Solution {
         return level;
     }
 
+    public int maxDepth1(TreeNode root) {
+        return maxDepth1(root, 0);
+    }
+
+    public int maxDepth1(TreeNode root, int level) {
+        if (root == null) {
+            return level;
+        }
+        level ++;
+        int left = maxDepth1(root.left, level);
+        int right = maxDepth1(root.right, level);
+        return Math.max(left, right);
+    }
+
 }

@@ -48,7 +48,6 @@ public class Solution {
      * @return
      */
     public boolean isBalanced(TreeNode root) {
-
         return height(root) >= 0;
     }
 
@@ -59,7 +58,6 @@ public class Solution {
         int lh = height(node.left);
         int rh = height(node.right);
         if (lh >= 0 && rh >= 0 && Math.abs(lh - rh) <= 1) {
-            System.out.println(Math.max(lh, rh) + 1);
             return Math.max(lh, rh) + 1;
         } else {
             return -1;
